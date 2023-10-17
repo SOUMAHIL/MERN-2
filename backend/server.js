@@ -63,7 +63,7 @@ app.post('/login', (req, res) => {
 
 
 app.get("/patient",(req, res) =>{
-    const q= "SELECT * from patient";
+    const q= "SELECT * from patient ORDER BY id DESC " ;
     db.query(q, (err, data) => {
         if(err){
             console.log(err);
@@ -128,7 +128,7 @@ app.delete("/patient/:id", (req, res) => {
     const q = "DELETE FROM patient WHERE id = ? ";
 
     db.query(q, [patientId], (err, data) => {
-        if(err) return res.send(err);
+        if(err) return res.json(err);
         return res.json(data);
       });
 });
